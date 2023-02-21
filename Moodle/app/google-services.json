@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "310407404366",
+    "project_id": "moodle-3558f",
+    "storage_bucket": "moodle-3558f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:310407404366:android:803915def6260a8c811c1f",
+        "android_client_info": {
+          "package_name": "com.example.moodle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "310407404366-bu4r75l2o0tpr9i3ojq5herip3e5ds6n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAi3nHMMblhxzJns3xnT6xw2eFqmm-AWGw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "310407404366-bu4r75l2o0tpr9i3ojq5herip3e5ds6n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
