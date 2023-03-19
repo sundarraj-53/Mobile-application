@@ -39,16 +39,21 @@ public class Login extends AppCompatActivity {
             public void onClick(View v) {
                 String user=t1.getText().toString();
                 String password=t2.getText().toString();
-
                 if(!user.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(user).matches()){
                     if(!password.isEmpty()){
                         auth.signInWithEmailAndPassword(user, password)
                                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                                     @Override
                                     public void onSuccess(AuthResult authResult) {
-                                         Toast.makeText(Login.this,"Login Successfully",Toast.LENGTH_SHORT).show();
-                                            startActivity(new Intent(Login.this,MainActivity.class));
-                                            finish();
+                                         if(user.equals("admin@nec.edu.in") && password.equals("Admin@123")){
+                                             Toast.makeText(Login.this, "Admin User", Toast.LENGTH_SHORT).show();
+                                             startActivity(new Intent(Login.this,admin.class));
+                                         }
+                                         else {
+                                             Toast.makeText(Login.this,"Login Successfully",Toast.LENGTH_SHORT).show();
+                                             startActivity(new Intent(Login.this, MainActivity.class));
+                                             finish();
+                                         }
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
@@ -65,11 +70,14 @@ public class Login extends AppCompatActivity {
                         t1.setError("Username can not be empty");
                     }
                 }
+
             }
         });
         tv1.setOnClickListener(new View.OnClickListener() {
             @Override
+
             public void onClick(View v) {
+
                 startActivity(new Intent(Login.this,Signup.class));
             }
         });

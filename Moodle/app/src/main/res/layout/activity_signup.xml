@@ -102,6 +102,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Sign up"
+                android:backgroundTint="#833AEA"
                 android:id="@+id/signup"
                 android:layout_marginTop="20dp"
                 />
@@ -109,7 +110,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Already have an account? Login"
-                android:textColor="@color/black"
+                android:textColor="@drawable/text_type"
                 android:textSize="15dp"
                 android:id="@+id/new1"
                 android:layout_marginTop="10dp"

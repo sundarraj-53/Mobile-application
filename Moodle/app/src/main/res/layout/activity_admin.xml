@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/unsplash"
+    tools:context=".admin">
+    <EditText
+        android:layout_width="300dp"
+        android:padding="15dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="50dp"
+        android:backgroundTint="@color/white"
+        android:hint="New Course"
+        android:textColor="@color/black"
+        android:id="@+id/newcourse"
+        android:background="@drawable/custom"
+        android:layout_marginTop="100dp"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="130dp"
+        android:id="@+id/submit"
+        android:layout_below="@+id/newcourse"
+        android:layout_marginTop="45dp"
+        android:text="Add the Course"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/submit"
+        android:id="@+id/view"
+        android:backgroundTint="@color/design_default_color_primary"
+        android:text="View"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="80dp"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Logout"
+        android:layout_marginLeft="250dp"
+        android:text="Log out"
+        android:layout_below="@+id/submit"
+        android:backgroundTint="@color/design_default_color_primary"
+        android:layout_marginTop="50dp"
+        />
+<!--    <ListView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:id="@+id/list"-->
+<!--        android:padding="20dp"-->
+<!--        android:layout_below="@+id/view"-->
+<!--        />-->
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:foregroundGravity="center"-->
+<!--        app:cardCornerRadius="25dp"-->
+<!--        app:cardElevation="20dp"-->
+<!--        android:layout_marginTop="250dp"-->
+<!--        android:background="#4C4646"-->
+<!--        android:id="@+id/card"-->
+<!--        android:layout_marginLeft="30dp"-->
+<!--        >-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:padding="15dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:orientation="vertical"-->
+<!--            >-->
+<!--            <EditText-->
+<!--                android:layout_width="300dp"-->
+<!--                android:padding="15dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:hint="New Course"-->
+<!--                android:id="@+id/newcourse"-->
+<!--                android:background="@drawable/custom"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                />-->
+<!--            <Button-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="90dp"-->
+<!--                android:id="@+id/submit"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:text="Add the Course"-->
+<!--                />-->
+<!--        </LinearLayout>-->
+<!--    </androidx.cardview.widget.CardView>-->
+
+</RelativeLayout>
