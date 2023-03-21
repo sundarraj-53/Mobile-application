@@ -15,13 +15,6 @@
         <include
             layout="@layout/toolbar"
             />
-        <Button
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:text="Books"
-            android:layout_gravity="right"
-            android:id="@+id/book"
-            />
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">

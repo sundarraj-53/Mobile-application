@@ -31,8 +31,7 @@ public class admin extends AppCompatActivity {
     private EditText Newcourse;
     DrawerLayout drawerLayout;
     ImageView menu;
-    Button book;
-    LinearLayout home,Dashboard,Logout;
+    LinearLayout home,Dashboard,About,Logout;
     ListView list;
     DatabaseReference databaseReference;
 //    private ListView list;
@@ -49,7 +48,7 @@ public class admin extends AppCompatActivity {
         home = findViewById(R.id.home);
         Dashboard = findViewById(R.id.dashboard);
         Logout = findViewById(R.id.Logout);
-        book=findViewById(R.id.book);
+        About = findViewById(R.id.About);
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,10 +75,10 @@ public class admin extends AppCompatActivity {
                 redirectActivity(admin.this,Login.class);
             }
         });
-        book.setOnClickListener(new View.OnClickListener() {
+        About.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(admin.this,addbook.class));
+                redirectActivity(admin.this,addbook.class);
             }
         });
 

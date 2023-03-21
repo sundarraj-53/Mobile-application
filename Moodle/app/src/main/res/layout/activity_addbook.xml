@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawerLayout"
+    android:background="@color/white"
     tools:context=".MainActivity">
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,6 +20,24 @@
             android:layout_height="wrap_content"
             android:id="@+id/bg"
             >
+            <!--<TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:drawable="@drawable/baseline_attach_file_24"
+                android:id="@+id/pin"
+                android:layout_marginLeft="400dp"
+                />-->
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/pin"
+                android:src="@drawable/baseline_attach_file_24"
+                android:background="@android:color/transparent"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:layout_marginLeft="370dp"
+                />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -73,7 +92,7 @@
         android:layout_gravity="left"
         >
         <include
-            layout="@layout/nav_drawer"
+            layout="@layout/nav2"
             />
     </RelativeLayout>
 
