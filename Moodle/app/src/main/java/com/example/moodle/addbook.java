@@ -1,24 +1,35 @@
 package com.example.moodle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.util.HashMap;
 
 public class addbook extends AppCompatActivity {
 
@@ -26,7 +37,9 @@ public class addbook extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ImageView menu;
     ImageButton attach;
+    private ProgressDialog progressDialog;
     private Uri pdfuri=null;
+    private Button upload;
     LinearLayout home,About,Dashboard,Logout;
     DatabaseReference databaseReference;
     private static final String tag="ADD_PDF";
@@ -44,6 +57,10 @@ public class addbook extends AppCompatActivity {
         About = findViewById(R.id.About);
         attach=findViewById(R.id.pin);
         auth=FirebaseAuth.getInstance();
+        upload=findViewById(R.id.Upload);
+        progressDialog=new ProgressDialog(this);
+        progressDialog.setTitle("please wait for a minute");
+        progressDialog.setCanceledOnTouchOutside(false);
 
         attach.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +100,92 @@ public class addbook extends AppCompatActivity {
                 redirectActivity(addbook.this,Login.class);
             }
         });
+        upload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                validateData();
+            }
+        });
+    }
+    private String title1="",description1="";
+    private String title="",description="";
+    private void validateData() {
+        EditText title1=(EditText) findViewById(R.id.EditText);
+        EditText description1=findViewById(R.id.bgDescription);
+        String title=title1.getText().toString().trim();
+        String description=description1.getText().toString().trim();
+        if(title.isEmpty()){
+            Toast.makeText(this, "Enter the title", Toast.LENGTH_SHORT).show();
+        }
+        else if(description.isEmpty()){
+            Toast.makeText(this, "Enter the description", Toast.LENGTH_SHORT).show();
+        }
+        else if(pdfuri==null){
+            Toast.makeText(this, "pick the pdf", Toast.LENGTH_SHORT).show();
+        }
+        else{
+                uploadPDF();
+        }
+    }
+
+    private void uploadPDF() {
+        progressDialog.setMessage("Uploading pdf");
+        progressDialog.show();
+        long Timsestamp=System.currentTimeMillis();
+        String filePathName="Books/" +Timsestamp;
+        StorageReference storageReference= FirebaseStorage.getInstance().getReference(filePathName);
+        storageReference.putFile(pdfuri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                        Task<Uri> uriTask=taskSnapshot.getStorage().getDownloadUrl();
+                        while(!uriTask.isSuccessful());
+                        String Uploadpdf=""+uriTask.getResult();
+
+                        uploadPDFToDB(Uploadpdf,Timsestamp);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                public void onFailure(@NonNull Exception e){
+                        Toast.makeText(addbook.this, "pdf is failed"+e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+        });
+    }
+
+    private void uploadPDFToDB(String uploadpdf, long timestamp) {
+
+        progressDialog.setMessage("uploading pdf to firebase");
+        String uid = auth.getUid();
+
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("uid", "" + uid);
+        hashMap.put("id", "" + timestamp);
+        hashMap.put("title", "" + title);
+        hashMap.put("Description", "" + description);
+        hashMap.put("url", "" + uploadpdf);
+        hashMap.put("timestamp", "" + timestamp);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("Books");
+        databaseReference.child("" + timestamp)
+
+                .setValue(hashMap)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(addbook.this, "Successfully uploaded pdf", Toast.LENGTH_SHORT).show();
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener(){
+                    @Override
+                    public void onFailure(@NonNull Exception e){
+                        progressDialog.dismiss();
+                        Toast.makeText(addbook.this, "Failed to upload the pdf"+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     private void pdfPickIntent() {

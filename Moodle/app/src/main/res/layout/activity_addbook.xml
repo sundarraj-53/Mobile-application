@@ -77,6 +77,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
                 android:text="Upload"
+                android:id="@+id/Upload"
                 android:layout_below="@+id/bgDescription"
                 android:textColor="@color/white"
                 android:backgroundTint="@color/lavender"
