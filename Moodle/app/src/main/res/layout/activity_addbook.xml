@@ -1,0 +1,80 @@
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/drawerLayout"
+    tools:context=".MainActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <include
+            layout="@layout/toolbar"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bg"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add a New book"
+                android:id="@+id/newBk"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="100dp"
+                android:fontFamily="sans-serif-condensed"
+                android:textSize="25dp"
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/EditText"
+                android:layout_below="@+id/newBk"
+                android:drawablePadding="10dp"
+                android:drawableLeft="@drawable/baseline_picture_as_pdf_24"
+                android:background="@drawable/course"
+                android:padding="15dp"
+                android:layout_marginTop="30dp"
+                android:hint="Book Title"
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="10dp"
+                android:layout_below="@id/EditText"
+                android:id="@+id/bgDescription"
+                android:drawableLeft="@drawable/baseline_create_24"
+                android:background="@drawable/course"
+                android:padding="15dp"
+                android:layout_marginTop="30dp"
+                android:hint="Book Description"
+                />
+            <Button
+                android:layout_width="125dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:text="Upload"
+                android:layout_below="@+id/bgDescription"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/lavender"
+                android:layout_centerHorizontal="true"
+                />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:layout_gravity="left"
+        >
+        <include
+            layout="@layout/nav_drawer"
+            />
+    </RelativeLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>
