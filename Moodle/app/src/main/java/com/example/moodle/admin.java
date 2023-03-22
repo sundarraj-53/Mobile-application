@@ -92,7 +92,7 @@ public class admin extends AppCompatActivity {
                 }
                 else{
                     FirebaseDatabase.getInstance().getReference().child("Courses").child(course).setValue(course);
-                    FirebaseDatabase.getInstance().getReference().child("CourseBooks").child(course).setValue(course);
+//                    FirebaseDatabase.getInstance().getReference().child("CourseBooks").child(course).setValue(course);
                     Toast.makeText(admin.this, "Course is Added", Toast.LENGTH_SHORT).show();
 //                    FirebaseDatabase.getInstance().getReference().child("Courses").child("Course"+i).setValue(course);
 //                    FirebaseDatabase.getInstance().getReference().child("CourseBooks").child("Books"+i).setValue(course);

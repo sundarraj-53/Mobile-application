@@ -36,13 +36,12 @@ public class addbook extends AppCompatActivity {
     private FirebaseAuth auth;
     DrawerLayout drawerLayout;
     ImageView menu;
-    ImageButton attach;
-    private ProgressDialog progressDialog;
+    Button attach;
     private Uri pdfuri=null;
     private Button upload;
     LinearLayout home,About,Dashboard,Logout;
     DatabaseReference databaseReference;
-    private static final String tag="ADD_PDF";
+    private static final String tag="ADD_PDF_TAG";
     private static final int pickcode=1000;
 
     @Override
@@ -58,13 +57,11 @@ public class addbook extends AppCompatActivity {
         attach=findViewById(R.id.pin);
         auth=FirebaseAuth.getInstance();
         upload=findViewById(R.id.Upload);
-        progressDialog=new ProgressDialog(this);
-        progressDialog.setTitle("please wait for a minute");
-        progressDialog.setCanceledOnTouchOutside(false);
 
         attach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 pdfPickIntent();
             }
         });
@@ -107,13 +104,12 @@ public class addbook extends AppCompatActivity {
             }
         });
     }
-    private String title1="",description1="";
     private String title="",description="";
     private void validateData() {
         EditText title1=(EditText) findViewById(R.id.EditText);
         EditText description1=findViewById(R.id.bgDescription);
-        String title=title1.getText().toString().trim();
-        String description=description1.getText().toString().trim();
+        title=title1.getText().toString().trim();
+        description=description1.getText().toString().trim();
         if(title.isEmpty()){
             Toast.makeText(this, "Enter the title", Toast.LENGTH_SHORT).show();
         }
@@ -129,10 +125,8 @@ public class addbook extends AppCompatActivity {
     }
 
     private void uploadPDF() {
-        progressDialog.setMessage("Uploading pdf");
-        progressDialog.show();
         long Timsestamp=System.currentTimeMillis();
-        String filePathName="Books/" +Timsestamp;
+        String filePathName="Moodle/" +Timsestamp;
         StorageReference storageReference= FirebaseStorage.getInstance().getReference(filePathName);
         storageReference.putFile(pdfuri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -157,11 +151,7 @@ public class addbook extends AppCompatActivity {
 
     private void uploadPDFToDB(String uploadpdf, long timestamp) {
 
-        progressDialog.setMessage("uploading pdf to firebase");
-        String uid = auth.getUid();
-
         HashMap<String, Object> hashMap = new HashMap<>();
-        hashMap.put("uid", "" + uid);
         hashMap.put("id", "" + timestamp);
         hashMap.put("title", "" + title);
         hashMap.put("Description", "" + description);
@@ -175,14 +165,13 @@ public class addbook extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(addbook.this, "Successfully uploaded pdf", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(addbook.this, "Successfully pdf is uploaded", Toast.LENGTH_SHORT).show();
 
                     }
                 })
                 .addOnFailureListener(new OnFailureListener(){
                     @Override
                     public void onFailure(@NonNull Exception e){
-                        progressDialog.dismiss();
                         Toast.makeText(addbook.this, "Failed to upload the pdf"+e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -190,8 +179,8 @@ public class addbook extends AppCompatActivity {
 
     private void pdfPickIntent() {
         Intent intent=new Intent();
-        intent.setType("application/json");
         intent.setAction(Intent.ACTION_GET_CONTENT);
+        intent.setType("application/pdf");
         startActivityForResult(Intent.createChooser(intent,"Choose pdf"),pickcode);
     }
 

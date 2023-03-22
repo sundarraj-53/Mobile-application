@@ -15,75 +15,94 @@
         <include
             layout="@layout/toolbar"
             />
-        <RelativeLayout
-            android:layout_width="match_parent"
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="380dp"
             android:layout_height="wrap_content"
-            android:id="@+id/bg"
+            android:layout_gravity="center_horizontal"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="30dp"
+            android:layout_marginTop="125dp"
+            app:cardBackgroundColor="@color/white"
             >
-            <!--<TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:drawable="@drawable/baseline_attach_file_24"
-                android:id="@+id/pin"
-                android:layout_marginLeft="400dp"
-                />-->
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/pin"
-                android:src="@drawable/baseline_attach_file_24"
-                android:background="@android:color/transparent"
-                android:layout_marginTop="10dp"
-                android:padding="5dp"
-                android:layout_marginLeft="370dp"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Add a New book"
-                android:id="@+id/newBk"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="100dp"
-                android:fontFamily="sans-serif-condensed"
-                android:textSize="25dp"
-                />
-            <EditText
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/EditText"
-                android:layout_below="@+id/newBk"
-                android:drawablePadding="10dp"
-                android:drawableLeft="@drawable/baseline_picture_as_pdf_24"
-                android:background="@drawable/course"
-                android:padding="15dp"
-                android:layout_marginTop="30dp"
-                android:hint="Book Title"
-                />
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawablePadding="10dp"
-                android:layout_below="@id/EditText"
-                android:id="@+id/bgDescription"
-                android:drawableLeft="@drawable/baseline_create_24"
-                android:background="@drawable/course"
-                android:padding="15dp"
-                android:layout_marginTop="30dp"
-                android:hint="Book Description"
-                />
-            <Button
-                android:layout_width="125dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="20dp"
-                android:text="Upload"
-                android:id="@+id/Upload"
-                android:layout_below="@+id/bgDescription"
-                android:textColor="@color/white"
-                android:backgroundTint="@color/lavender"
-                android:layout_centerHorizontal="true"
-                />
-        </RelativeLayout>
+                android:padding="20dp"
+                app:cardCornerRadius="100dp"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                >
+                <!--<TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:drawable="@drawable/baseline_attach_file_24"
+                    android:id="@+id/pin"
+                    android:layout_marginLeft="400dp"
+                    />-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Add a New book"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:id="@+id/newBk"
+                    android:textColor="@color/lavender"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="sans-serif-condensed"
+                    android:textSize="25dp"
+                    />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/EditText"
+                    android:layout_below="@+id/newBk"
+                    android:background="@drawable/custom"
+                    android:drawablePadding="10dp"
+                    android:drawableLeft="@drawable/baseline_picture_as_pdf_24"
+                    android:textColor="@color/black"
+                    android:padding="15dp"
+                    android:layout_marginTop="30dp"
+                    android:hint="Book Title"
+                    />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="10dp"
+                    android:layout_below="@id/EditText"
+                    android:id="@+id/bgDescription"
+                    android:drawableLeft="@drawable/baseline_create_24"
+                    android:background="@drawable/custom"
+                    android:textColor="@color/black"
+                    android:padding="15dp"
+                    android:layout_marginTop="30dp"
+                    android:hint="Book Description"
+                    />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:id="@+id/pin"
+                    android:layout_below="@+id/bgDescription"
+                    android:text="Select Pdf"
+                    android:backgroundTint="@color/lavender"
+                    android:layout_marginTop="40dp"
+                    android:padding="5dp"
+                    />
+                <Button
+                    android:layout_width="125dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Upload"
+                    android:id="@+id/Upload"
+                    android:layout_below="@+id/pin"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/lavender"
+                   android:layout_gravity="center"
+                    />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
     </LinearLayout>
 
     <RelativeLayout
