@@ -1,0 +1,90 @@
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/drawerLayout"
+    android:background="@color/white"
+    tools:context=".MainActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <include
+            layout="@layout/toolbar"
+            />
+        <androidx.cardview.widget.CardView
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="30dp"
+            android:layout_marginTop="125dp"
+            app:cardBackgroundColor="@color/white"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                app:cardCornerRadius="100dp"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Category"
+                    android:textSize="25dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/lavender"
+                    />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/course"
+                    android:padding="15dp"
+                    android:id="@+id/categoryTitle"
+                    android:textColor="@color/black"
+                    android:drawablePadding="10dp"
+                    android:layout_marginTop="25dp"
+                    android:hint="Category Title"
+                    android:drawableStart="@drawable/baseline_category_24"
+                    />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:layout_gravity="center"
+                    android:text="Submit"
+                    android:id="@+id/categoryButton"
+                    />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_gravity="left"
+            android:layout_marginTop="45dp"
+            android:id="@+id/categoryView"
+            android:text="View"
+
+            />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:layout_gravity="left"
+        >
+        <include
+            layout="@layout/nav2"
+            />
+    </RelativeLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>

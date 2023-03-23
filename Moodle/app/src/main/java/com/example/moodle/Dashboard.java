@@ -86,7 +86,7 @@ public class Dashboard extends AppCompatActivity {
         ArrayList<String> qwe=new ArrayList<String>();
         ArrayAdapter<String> listView=new ArrayAdapter<>(Dashboard.this,R.layout.activity_details2,qwe);
         list.setAdapter(listView);
-        DatabaseReference refernce= FirebaseDatabase.getInstance().getReference().child("Courses");
+        DatabaseReference refernce= FirebaseDatabase.getInstance().getReference().child("Books");
         refernce.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

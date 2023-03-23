@@ -31,6 +31,7 @@ public class admin extends AppCompatActivity {
     private EditText Newcourse;
     DrawerLayout drawerLayout;
     ImageView menu;
+    Button AddNewCategory;
     LinearLayout home,Dashboard,About,Logout;
     ListView list;
     DatabaseReference databaseReference;
@@ -49,6 +50,14 @@ public class admin extends AppCompatActivity {
         Dashboard = findViewById(R.id.dashboard);
         Logout = findViewById(R.id.Logout);
         About = findViewById(R.id.About);
+        AddNewCategory=findViewById(R.id.NewCategory);
+
+        AddNewCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(admin.this,Addcategory.class));
+            }
+        });
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
