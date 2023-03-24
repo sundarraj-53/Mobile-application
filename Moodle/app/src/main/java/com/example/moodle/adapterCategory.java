@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageButton;
@@ -44,18 +43,18 @@ public class adapterCategory extends RecyclerView.Adapter<adapterCategory.Holder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull adapterCategory.HolderCategory holder, int position) {
+    public void onBindViewHolder(@NonNull HolderCategory holder, int position) {
         ModelCategory modelCategory=categoryArrayList.get(position);
         String id=modelCategory.getId();
-        String category=modelCategory.getCategory();
+        String Category=modelCategory.getCategory();
         String Uid=modelCategory.getUid();
         String Timestamp=modelCategory.getTimestamp();
-//        System.out.println(category);
+//        System.out.println("Categories",+category);
+        System.out.println("Holder"+holder);
 
 
 
-
-//        holder.categoryTv.setText(category);
+       holder.categoryTv.setText(Category);
 //            holder.categoryTitle.setText(category);
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,7 +124,7 @@ public class adapterCategory extends RecyclerView.Adapter<adapterCategory.Holder
         public HolderCategory(@NonNull View itemView) {
 
             super(itemView);
-            categoryTv=itemView.findViewById(R.id.categoryTitle);
+            categoryTv=itemView.findViewById(R.id.Categories);
             delete=itemView.findViewById(R.id.deletebtn);
 
         }

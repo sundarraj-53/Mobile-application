@@ -2,49 +2,60 @@ package com.example.moodle;
 
 public class ModelCategory {
 
-    String id, category,uid;
-    String timestamp;
+     private String id, Category,Uid;
+     private String timestamp;
 
-    public ModelCategory() {
 
-    }
+    public ModelCategory(){
 
-    public ModelCategory(String id, String category, String uid, String timestamp) {
+     }
+
+
+    public ModelCategory(String id, String Category, String Uid, String timestamp) {
         this.id = id;
-        this.category = category;
-        this.uid = uid;
+        this.Category = Category;
+        this.Uid = Uid;
         this.timestamp = timestamp;
     }
     public String getId() {
-        return id;
+        System.out.println("getid"+id);
+         return id;
     }
     public String getCategory()
     {
-        return category;
+        System.out.println("getCategory"+Category);
+        return Category;
     }
 
     public void setId(String id) {
-        this.id = id;
+        System.out.println("setid"+id);
+         this.id = id;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setCategory(String Category) {
+        System.out.println("setCategory"+Category);
+         this.Category = Category;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
+    public void setUid(String Uid) {
+        System.out.println("setuid"+Uid);
+         this.Uid = Uid;
     }
 
     public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
+         System.out.println("settimestamp"+timestamp);
+
+         this.timestamp = timestamp;
     }
 
     public String getUid()
     {
-        return uid;
+        System.out.println("getuid"+Uid);
+        return Uid;
     }
     public String getTimestamp()
     {
+        System.out.println("gettimestamp"+timestamp);
         return timestamp;
     }
 

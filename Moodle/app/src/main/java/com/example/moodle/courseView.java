@@ -111,27 +111,31 @@ public class courseView extends AppCompatActivity {
     private void loadCategories() {
         categoryArrayList=new ArrayList<>();
         DatabaseReference databaseReference1= FirebaseDatabase.getInstance().getReference("Categories");
+        System.out.println(databaseReference1);
         databaseReference1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                    categoryArrayList.clear();
-//                    for(DataSnapshot snapshot1:snapshot.getChildren()){
-//                        ModelCategory model=snapshot1.getValue(ModelCategory.class);
-//                        categoryArrayList.add(model);
-//                    }
+                    categoryArrayList.clear();
+                    for(DataSnapshot snapshot1:snapshot.getChildren()){
+                        System.out.println(snapshot);
+                        System.out.println(snapshot1);
+                        ModelCategory  Model=snapshot1.getValue(ModelCategory.class);
+                        System.out.println(Model);
+                        categoryArrayList.add(Model);
+                    }
 //                categoryArrayList.clear();
 //                for(DataSnapshot snapshot1 : snapshot.getChildren()){
-//                    categoryArrayList.add(snapshot1.getValue(ModelCategory.class));
+//                    categoryArrayList.add(snapshot1.getValue(Mo4delCategory.class));
 //                }
-                if(snapshot.exists()){
-                    categoryArrayList.clear();
-                    ModelCategory model=snapshot.getValue(ModelCategory.class);
-                    categoryArrayList.add(model);
-                }
+//                if(snapshot.exists()){
+//                    categoryArrayList.clear();
+//                    ModelCategory model=snapshot.getValue(ModelCategory.class);
+//                    categoryArrayList.add(model);
+//                }
                     adaptercategory=new adapterCategory(courseView.this,categoryArrayList);
                     RecyclerView recyclerView =findViewById(R.id.categoryRv);
                     recyclerView.setAdapter(adaptercategory);
-                
+
 
             }
 

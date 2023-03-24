@@ -90,7 +90,7 @@ public class Addcategory extends AppCompatActivity {
         });
     }
 
-    private String Category="";
+    private String Category;
 
     private void validateData() {
         EditText categoryTitle=(EditText) findViewById(R.id.categoryTitle);
@@ -110,7 +110,7 @@ public class Addcategory extends AppCompatActivity {
         HashMap<String,Object> hashmap=new HashMap<>();
         hashmap.put("id",""+Timestamp);
         hashmap.put("Category",""+Category);
-        hashmap.put("timestamp", Timestamp);
+        hashmap.put("timestamp", ""+Timestamp);
         hashmap.put("Uid",""+auth.getUid());
 
         DatabaseReference databaseReference1= FirebaseDatabase.getInstance().getReference("Categories");
