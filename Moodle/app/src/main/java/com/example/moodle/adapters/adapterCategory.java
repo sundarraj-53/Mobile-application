@@ -1,4 +1,4 @@
-package com.example.moodle;
+package com.example.moodle.adapters;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -15,6 +15,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.moodle.filters.FilterCategory;
+import com.example.moodle.models.ModelCategory;
+import com.example.moodle.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;

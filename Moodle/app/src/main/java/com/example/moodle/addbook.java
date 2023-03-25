@@ -7,12 +7,14 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -38,7 +40,7 @@ public class addbook extends AppCompatActivity {
     Button attach;
     private Uri pdfuri=null;
     private Button upload;
-    private ArrayList<String> categoryTitleArrayList,categoryIdArrayList;
+    private ArrayList<String> categoryArrayList;
     LinearLayout home,About,Dashboard,Logout;
     DatabaseReference databaseReference;
     private static final String tag="ADD_PDF_TAG";

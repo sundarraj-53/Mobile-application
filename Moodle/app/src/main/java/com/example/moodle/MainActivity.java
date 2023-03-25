@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ImageView menu;
-    LinearLayout home,Dashboard,User,About,Logout;
+    LinearLayout home1,Dashboard1,User1,About1,Logout1;
      ListView list;
      TextView name;
      DatabaseReference databaseReference;
@@ -48,12 +48,12 @@ public class MainActivity extends AppCompatActivity {
         list = findViewById(R.id.listView);
         drawerLayout = findViewById(R.id.drawerLayout);
         menu = findViewById(R.id.menu);
-        home = findViewById(R.id.home);
+        home1 = findViewById(R.id.home);
         name=findViewById(R.id.mail);
-        Dashboard = findViewById(R.id.dashboard);
-        User = findViewById(R.id.userSettings);
-        About = findViewById(R.id.About);
-        Logout = findViewById(R.id.Logout);
+        Dashboard1 = findViewById(R.id.dashboard);
+        User1 = findViewById(R.id.userSettings);
+        About1 = findViewById(R.id.About);
+        Logout1 = findViewById(R.id.Logout);
         Intent intent = getIntent();
         String getName = intent.getStringExtra("name");
         //Set Text
@@ -65,32 +65,32 @@ public class MainActivity extends AppCompatActivity {
                 openDrawer(drawerLayout);
             }
         });
-        home.setOnClickListener(new View.OnClickListener() {
+        home1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this,MainActivity.class));
             }
         });
-        Dashboard.setOnClickListener(new View.OnClickListener() {
+        Dashboard1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(MainActivity.this,Dashboard.class);
+                startActivity(new Intent(MainActivity.this,Dashboard.class));
             }
         });
-        User.setOnClickListener(new View.OnClickListener() {
+        User1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 redirectActivity(MainActivity.this,user.class);
             }
         });
-        About.setOnClickListener(new View.OnClickListener() {
+        About1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 redirectActivity(MainActivity.this,About.class);
             }
         });
-        Logout.setOnClickListener(new View.OnClickListener() {
+        Logout1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();

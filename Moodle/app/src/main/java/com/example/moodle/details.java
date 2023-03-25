@@ -45,6 +45,8 @@ public class details extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 qwe.clear();
                 for(DataSnapshot snapshot1 : snapshot.getChildren()){
+//                    System.out.println("Admin Dashboard"+snapshot);
+                    System.out.println("Admin Dashboard2"+snapshot1);
                     qwe.add(snapshot1.getValue().toString());
                 }
                 listView.notifyDataSetChanged();

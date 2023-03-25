@@ -1,16 +1,21 @@
-package com.example.moodle;
+package com.example.moodle.filters;
 
 import android.widget.Filter;
 
+import com.example.moodle.adapters.AdapterPdfUser;
+import com.example.moodle.adapters.adapterCategory;
+import com.example.moodle.models.ModelCategory;
+import com.example.moodle.models.ModelPdf;
+
 import java.util.ArrayList;
 
-public class FilterCategory extends Filter {
-    ArrayList<ModelCategory> filterList;
-    adapterCategory adapterCategory;
+public class FilterPdfuser extends Filter {
+    ArrayList<ModelPdf> filterList;
+    AdapterPdfUser adapterPdfUser;
 
-    public FilterCategory(ArrayList<ModelCategory> filterList, com.example.moodle.adapterCategory adapterCategory) {
+    public FilterPdfuser(ArrayList<ModelPdf> filterList, com.example.moodle.adapters.AdapterPdfUser adapterPdfUser) {
         this.filterList = filterList;
-        this.adapterCategory = adapterCategory;
+        this.adapterPdfUser = adapterPdfUser;
     }
 
     @Override
@@ -18,9 +23,9 @@ public class FilterCategory extends Filter {
         FilterResults results=new FilterResults();
         if(constraint!=null && constraint.length()>0){
             constraint=constraint.toString().toUpperCase();
-            ArrayList<ModelCategory> filteredModels=new ArrayList<>();
+            ArrayList<ModelPdf> filteredModels=new ArrayList<>();
             for(int i=0;i<filterList.size();i++){
-                if(filterList.get(i).getCategory().toUpperCase().contains(constraint)){
+                if(filterList.get(i).getTitle().toUpperCase().contains(constraint)){
                     filteredModels.add(filterList.get(i));
                 }
             }
@@ -36,8 +41,8 @@ public class FilterCategory extends Filter {
 
     @Override
     protected void publishResults(CharSequence constraint, FilterResults results) {
-        adapterCategory.categoryArrayList=(ArrayList<ModelCategory>) results.values;
+        adapterPdfUser.pdfArrayList=(ArrayList<ModelPdf>) results.values;
 
-        adapterCategory.notifyDataSetChanged();
+        adapterPdfUser.notifyDataSetChanged();
     }
 }

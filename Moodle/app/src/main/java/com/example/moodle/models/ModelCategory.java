@@ -1,4 +1,4 @@
-package com.example.moodle;
+package com.example.moodle.models;
 
 public class ModelCategory {
 
