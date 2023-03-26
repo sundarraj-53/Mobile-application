@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.moodle.databinding.ActivityLoginBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
@@ -24,16 +25,25 @@ public class Login extends AppCompatActivity {
     private EditText t1,t2;
     private TextView tv1;
     private Button b1;
+    ActivityLoginBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        binding=ActivityLoginBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         auth=FirebaseAuth.getInstance();
         t1=findViewById(R.id.Email);
         t2=findViewById(R.id.password);
         b1=findViewById(R.id.login);
         tv1=findViewById(R.id.redirect);
+        binding.forgotTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Login.this,ForgotPasswordActivity.class));
+                Toast.makeText(Login.this, "Forget Password", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         b1.setOnClickListener(new View.OnClickListener() {
             @Override

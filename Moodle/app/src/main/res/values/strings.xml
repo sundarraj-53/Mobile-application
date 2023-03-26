@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Moodle</string>
+    <string name="TODO1"><a href="">Forget Password?</a></string>
 </resources>

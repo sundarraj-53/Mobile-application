@@ -88,6 +88,15 @@
                 android:textSize="15dp"
                 android:layout_marginTop="10dp"
                 />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/TODO1"
+                    android:layout_marginTop="20dp"
+                    android:textSize="15dp"
+                    android:id="@+id/forgotTv"
+                    android:textColor="@drawable/foreget_password"
+                    />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
