@@ -3,6 +3,7 @@ package com.example.moodle.adapters;
 import static com.example.moodle.Constants.MAX_BYTES_PDF;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.moodle.MyApplication;
+import com.example.moodle.PdfDetailActivity;
 import com.example.moodle.databinding.RowPdfDashboardBinding;
 import com.example.moodle.filters.FilterPdfuser;
 import com.example.moodle.models.ModelPdf;
@@ -61,8 +63,10 @@ public class AdapterPdfUser extends RecyclerView.Adapter<AdapterPdfUser.HolderPd
     @Override
     public void onBindViewHolder(@NonNull HolderPdfUser holder, int position) {
         ModelPdf model=pdfArrayList.get(position);
+        String pdfId=model.getId();
         String title=model.getTitle();
         String description=model.getDescription();
+        String pdfUrl=model.getUrl();
         long timestamp=model.getTimestamp();
 
         String formattedDate= MyApplication.formatTimestamp(timestamp);
@@ -70,88 +74,25 @@ public class AdapterPdfUser extends RecyclerView.Adapter<AdapterPdfUser.HolderPd
         holder.descriptionTv.setText(description);
         holder.dateTv.setText(formattedDate);
 
-        loadPdfFromUrl(model,holder);
-        loadPdfSize(model,holder);
-    }
-
-    private void loadPdfSize(ModelPdf model, HolderPdfUser holder) {
-        String pdfUrl=model.getUrl();
-        StorageReference ref= FirebaseStorage.getInstance().getReferenceFromUrl(pdfUrl);
-        ref.getMetadata()
-                .addOnSuccessListener(new OnSuccessListener<StorageMetadata>() {
-                    @Override
-                    public void onSuccess(StorageMetadata storageMetadata) {
-                        double bytes=storageMetadata.getSizeBytes();
-                        Log.d(TAG,"onSuccess "+model.getTitle()+""+bytes);
-                        double kb=bytes/1024;
-                        double mb=kb/1024;
-                        if(mb>=1){
-                            holder.sizeTv.setText(String.format("%.2f", mb)+" MB");
-                        } else if (kb >= 1) {
-                            holder.sizeTv.setText(String.format("%.2f", kb)+" KB");
-                        }
-                        else{
-                            holder.sizeTv.setText(String.format("%.2f", bytes)+" bytes");
-                        }
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(context, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
-                        Log.d(TAG,"onFailure "+e.getMessage());
-                    }
-                });
-
-    }
-
-    private void loadPdfFromUrl(ModelPdf model, HolderPdfUser holder) {
-        String pdfUrl=model.getUrl();
-        StorageReference ref=FirebaseStorage.getInstance().getReferenceFromUrl(pdfUrl);
-        ref.getBytes(MAX_BYTES_PDF)
-                .addOnSuccessListener(new OnSuccessListener<byte[]>() {
-                    @Override
-                    public void onSuccess(byte[] bytes) {
-                        Log.d(TAG,"onSuccess:"+model.getTitle()+"Successfully got the file");
-                        holder.pdfView.fromBytes(bytes)
-                                .pages(0)
-                                    .spacing(0)
-                                        .swipeHorizontal(false)
-                                            .enableSwipe(false)
-                                                    .onError(new OnErrorListener() {
-                                                        @Override
-                                                        public void onError(Throwable t) {
-                                                                    holder.progressBar.setVisibility(View.INVISIBLE);
-                                                                Log.d(TAG,"onError: "+t.getMessage());
-
-                                                        }
-                                                    })
-                                                    .onPageError(new OnPageErrorListener() {
-                                                        @Override
-                                                        public void onPageError(int page, Throwable t) {
-                                                            holder.progressBar.setVisibility(View.INVISIBLE);
-                                                                Log.d(TAG,"onPageError: "+t.getMessage());
-                                                        }
-                                                    })
-                                                        .onLoad(new OnLoadCompleteListener() {
-                                                            @Override
-                                                            public void loadComplete(int nbPages) {
-                                                                holder.progressBar.setVisibility(View.INVISIBLE);
-                                                                Log.d(TAG,"LoadComplete: pdf loaded");
-
-                                                            }
-                                                        })
-                                                        .load();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        holder.progressBar.setVisibility(View.INVISIBLE);
-
-                        Log.d(TAG,"OnFailure:failed to getting the url due to "+e.getMessage());
-                    }
-                });
+        MyApplication.loadPdfFromUrlSinglePage(
+                ""+pdfUrl,
+                ""+title,
+                holder.pdfView,
+                holder.progressBar
+        );
+        MyApplication.loadPdfSize(
+                ""+pdfUrl,
+                ""+title,
+                holder.sizeTv
+        );
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context, PdfDetailActivity.class);
+                intent.putExtra("bookId",pdfId);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

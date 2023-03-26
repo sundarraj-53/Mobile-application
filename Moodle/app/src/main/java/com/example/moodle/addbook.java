@@ -159,6 +159,8 @@ public class addbook extends AppCompatActivity {
         hashMap.put("Description", "" + description);
         hashMap.put("url", "" + uploadpdf);
         hashMap.put("timestamp",timestamp);
+        hashMap.put("viewsCount",0);
+        hashMap.put("downloadsCount",0);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Books");
         databaseReference.child("" + timestamp)
