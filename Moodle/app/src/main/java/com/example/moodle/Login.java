@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 
 public class Login extends AppCompatActivity {
 
@@ -53,8 +54,10 @@ public class Login extends AppCompatActivity {
                                              Toast.makeText(Login.this,"Login Successfully",Toast.LENGTH_SHORT).show();
                                              Intent intent=new Intent(getApplicationContext(), MainActivity.class);
                                               intent.putExtra("name", user);
-                                             System.out.println(user);
-                                             startActivity(intent);
+                                              intent.putExtra("password",password);
+                                                System.out.println(user);
+                                                System.out.println(password);
+                                               startActivity(intent);
 //                                             startActivity(new Intent(Login.this, MainActivity.class));
                                              finish();
                                          }

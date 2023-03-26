@@ -40,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
      ListView list;
      TextView name;
      DatabaseReference databaseReference;
+     public String getName="";
+     public String getPass="";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,11 +57,19 @@ public class MainActivity extends AppCompatActivity {
         User1 = findViewById(R.id.userSettings);
         About1 = findViewById(R.id.About);
         Logout1 = findViewById(R.id.Logout);
-        Intent intent = getIntent();
-        String getName = intent.getStringExtra("name");
+//        Intent intent = getIntent();
+//        String getName = intent.getStringExtra("name");
+        getName=getIntent().getStringExtra("name");
+        getPass=getIntent().getStringExtra("password");
+        System.out.println("getName"+getName);
         //Set Text
         name.setText(getName);
-        System.out.println(getName);
+//        intent.putExtra("name", getName);
+//        Intent intent=new Intent(MainActivity.this,user.class);
+//        intent.putExtra("name", "getName");
+//        startActivity(intent);
+
+
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,8 +91,12 @@ public class MainActivity extends AppCompatActivity {
         User1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,user.class);
+                intent.putExtra("name", getName);
+                intent.putExtra("pass", getPass);
+                startActivity(intent);
 
-                redirectActivity(MainActivity.this,user.class);
+//                redirectActivity(MainActivity.this,user.class);
             }
         });
         About1.setOnClickListener(new View.OnClickListener() {
