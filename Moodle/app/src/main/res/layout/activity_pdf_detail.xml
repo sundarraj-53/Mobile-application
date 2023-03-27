@@ -31,7 +31,7 @@
             />
     </RelativeLayout>
     <ScrollView
-        android:layout_above="@+id/readBookBtn"
+        android:layout_above="@+id/bookOptionsLl"
         android:layout_below="@+id/toolbarRl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -176,13 +176,32 @@
                 />
         </LinearLayout>
     </ScrollView>
-   <Button
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:id="@+id/readBookBtn"
-       android:layout_alignParentBottom="true"
-       android:text="Read"
-       android:drawableTop="@drawable/baseline_menu_book_24"
-       android:background="@color/design_default_color_primary"
-       />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bookOptionsLl"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        >
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/readBookBtn"
+            android:layout_weight="1"
+            android:text="Read"
+            android:drawableTop="@drawable/baseline_menu_book_24"
+            android:background="@color/design_default_color_primary"
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/downloadBookBtn"
+            android:layout_weight="1"
+            android:text="Download"
+            android:drawableTop="@drawable/baseline_save_alt_24"
+            android:background="@color/design_default_color_primary"
+            />
+
+    </LinearLayout>
+
 </RelativeLayout>
