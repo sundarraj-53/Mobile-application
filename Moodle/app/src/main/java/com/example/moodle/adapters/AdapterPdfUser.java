@@ -73,14 +73,13 @@ public class AdapterPdfUser extends RecyclerView.Adapter<AdapterPdfUser.HolderPd
         holder.titleTv.setText(title);
         holder.descriptionTv.setText(description);
         holder.dateTv.setText(formattedDate);
-
-        MyApplication.loadPdfFromUrlSinglePage(
+        MyApplication.PdfFromUrlSinglePage(
                 ""+pdfUrl,
                 ""+title,
                 holder.pdfView,
                 holder.progressBar
         );
-        MyApplication.loadPdfSize(
+        MyApplication.PdfSize(
                 ""+pdfUrl,
                 ""+title,
                 holder.sizeTv
@@ -97,6 +96,7 @@ public class AdapterPdfUser extends RecyclerView.Adapter<AdapterPdfUser.HolderPd
 
     @Override
     public int getItemCount() {
+
         return pdfArrayList.size();
     }
 

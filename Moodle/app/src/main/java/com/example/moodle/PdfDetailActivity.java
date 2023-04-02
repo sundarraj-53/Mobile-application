@@ -107,13 +107,13 @@ public class PdfDetailActivity extends AppCompatActivity {
 //                System.out.println("PDFDETAILACTIVITY"+timestamp);
 //                System.out.println("PDFDETAILACTIVITYURL"+url);
                 String date=MyApplication.formatTimestamp(Long.parseLong(timestamp));
-                MyApplication.loadPdfFromUrlSinglePage(
+                MyApplication.PdfFromUrlSinglePage(
                         ""+bookUrl,
                         ""+bookTitle,
                         binding.pdfView,
                         binding.progressBar
                 );
-                MyApplication.loadPdfSize(
+                MyApplication.PdfSize(
                         ""+bookUrl,
                         ""+bookTitle,
                         binding.sizeTv

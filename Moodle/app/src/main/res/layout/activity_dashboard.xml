@@ -31,7 +31,7 @@
                 android:layout_margin="10dp"
                 android:id="@+id/bookRv"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/row_pdf_dashboard"
+                tools:listitem="@layout/syllabus_list"
                 />
 
     </LinearLayout>

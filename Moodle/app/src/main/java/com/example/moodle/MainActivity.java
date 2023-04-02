@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout home1,Dashboard1,User1,About1,Logout1;
     private RecyclerView recyclerView;
      TextView name;
+     Button syllabus;
      DatabaseReference databaseReference;
      private ActivityMainBinding binding;
      private AdapterClass adapterClass;
@@ -68,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         User1 = findViewById(R.id.userSettings);
         About1 = findViewById(R.id.About);
         Logout1 = findViewById(R.id.Logout);
+        syllabus=findViewById(R.id.syllabus);
 //        Intent intent = getIntent();
 //        String getName = intent.getStringExtra("name");
         getName=getIntent().getStringExtra("name");
@@ -76,6 +79,12 @@ public class MainActivity extends AppCompatActivity {
         //Set Text
         name.setText(getName);
         loadPdfList();
+        syllabus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,innerCourse.class));
+            }
+        });
 //        intent.putExtra("name", getName);
 //        Intent intent=new Intent(MainActivity.this,user.class);
 //        intent.putExtra("name", "getName");

@@ -1,14 +1,14 @@
 package com.example.moodle.models;
 
-public class ModelClass {
+public class ModelSyllabus {
     private String Courses, url;
     private long viewsCount,downloadsCount;
     private String timestamp;
 
-    public ModelClass() {
+    public ModelSyllabus() {
     }
 
-    public ModelClass(String courses, String url, long viewsCount, long downloadsCount, String timestamp) {
+    public ModelSyllabus(String courses, String url, long viewsCount, long downloadsCount, String timestamp) {
         Courses = courses;
         this.url = url;
         this.viewsCount = viewsCount;

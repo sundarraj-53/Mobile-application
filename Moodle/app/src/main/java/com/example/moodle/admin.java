@@ -182,7 +182,7 @@ public class admin extends AppCompatActivity {
     }
     private void uploadPDFToDB(String uploadpdf, long timestamp) {
 
-        FirebaseDatabase.getInstance().getReference("Courses").child(NewCourse).setValue(""+NewCourse);
+//        FirebaseDatabase.getInstance().getReference("Courses").setValue(timestamp);
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("Courses",""+NewCourse);
         hashMap.put("url", "" +uploadpdf);
@@ -192,7 +192,7 @@ public class admin extends AppCompatActivity {
 
 //        databaseReference.child("" + timestamp)
         databaseReference = FirebaseDatabase.getInstance().getReference("Courses");
-        databaseReference.child("" + NewCourse)
+        databaseReference.child("" + timestamp)
                 .setValue(hashMap)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

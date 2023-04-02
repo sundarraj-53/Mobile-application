@@ -40,18 +40,20 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.HolderClass>
     public void onBindViewHolder(@NonNull AdapterClass.HolderClass holder, int position) {
         ModelClass model=qwe.get(position);
         String courses=model.getCourses();
+        String bookId=model.getTimestamp();
         System.out.println("Courses"+courses);
 
         holder.label.setText(courses);
 
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(context, innerCourse.class);
-                context.startActivity(intent);
-            }
-        });
+//
+//        holder.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent=new Intent(context, innerCourse.class);
+//                intent.putExtra("bookId",bookId);
+//                context.startActivity(intent);
+//            }
+//        });
 
     }
 
