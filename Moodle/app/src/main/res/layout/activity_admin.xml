@@ -55,15 +55,25 @@
             />
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/submit"
-            android:layout_below="@+id/newcourse"
-            android:layout_marginTop="45dp"
-            android:text="Add the Course"
-            android:layout_gravity="center"
-            android:backgroundTint="#9C9A9A"
+            android:layout_height="50dp"
+            android:id="@+id/pin"
+            android:layout_below="@+id/bgDescription"
+            android:text="Select Pdf"
+            android:backgroundTint="@color/purple_200"
+            android:layout_marginTop="20dp"
+            android:padding="5dp"
             />
-        </LinearLayout>
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pin"
+            android:layout_gravity="center"
+            android:layout_marginTop="45dp"
+            android:backgroundTint="#9C9A9A"
+            android:text="Add the Course" />
+    </LinearLayout>
     </androidx.cardview.widget.CardView>
         <Button
             android:layout_width="120dp"

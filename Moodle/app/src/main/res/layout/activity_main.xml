@@ -26,15 +26,24 @@
             android:textSize="30dp"
             android:textColor="@color/lavender"
             />
-        <ListView
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/listView"
-            android:layout_below="@+id/Title"
-            android:layout_centerHorizontal="true"
-            android:padding="15dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:id="@+id/label"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/activity_details2"
             />
+<!--        <ListView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/listView"-->
+<!--            android:layout_below="@+id/Title"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:padding="15dp"-->
+<!--            android:layout_marginTop="50dp"-->
+<!--            />-->
     </LinearLayout>
     <RelativeLayout
         android:layout_width="300dp"

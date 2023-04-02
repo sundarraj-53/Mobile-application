@@ -12,13 +12,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.moodle.adapters.AdapterClass;
+import com.example.moodle.adapters.AdapterPdfUser;
+import com.example.moodle.databinding.ActivityDashboardBinding;
+import com.example.moodle.databinding.ActivityMainBinding;
+import com.example.moodle.models.ModelClass;
+import com.example.moodle.models.ModelPdf;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,7 +32,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,9 +41,12 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ImageView menu;
     LinearLayout home1,Dashboard1,User1,About1,Logout1;
-     ListView list;
+    private RecyclerView recyclerView;
      TextView name;
      DatabaseReference databaseReference;
+     private ActivityMainBinding binding;
+     private AdapterClass adapterClass;
+        private ArrayList<ModelClass> qwe;
      public String getName="";
      public String getPass="";
 
@@ -47,8 +54,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        list = findViewById(R.id.listView);
+        binding= ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+//        setContentView(R.layout.activity_main);
+//        list = findViewById(R.id.listView);
+//        recyclerView = findViewById(R.id.label);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         drawerLayout = findViewById(R.id.drawerLayout);
         menu = findViewById(R.id.menu);
         home1 = findViewById(R.id.home);
@@ -64,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("getName"+getName);
         //Set Text
         name.setText(getName);
+        loadPdfList();
 //        intent.putExtra("name", getName);
 //        Intent intent=new Intent(MainActivity.this,user.class);
 //        intent.putExtra("name", "getName");
@@ -113,36 +125,69 @@ public class MainActivity extends AppCompatActivity {
                 redirectActivity(MainActivity.this,Login.class);
             }
         });
-        ArrayList<String> qwe = new ArrayList<String>();
-        ArrayAdapter<String> listView = new ArrayAdapter<>(MainActivity.this, R.layout.activity_details2, qwe);
-        list.setAdapter(listView);
+//        ArrayList<ModelClass> qwe = new ArrayList<>();
+//        DatabaseReference refernce = FirebaseDatabase.getInstance().getReference().child("Courses");
+//        refernce.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                qwe.clear();
+//                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+//                    ModelClass model=snapshot1.getValue(ModelClass.class);
+//                    qwe.add(model);
+//                }
+////                ArrayAdapter<String> listView = new ArrayAdapter<>(MainActivity.this, R.layout.activity_details2, qwe);
+////                list.setAdapter(listView);
+//                AdapterClass adapterClass=new AdapterClass(com.example.moodle.MainActivity.this,qwe);
+//                binding.bookRv.setAdapter(adapterClass);
+//
+//            }
+//
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Toast.makeText(MainActivity.this, "New course", Toast.LENGTH_SHORT).show();
+//                startActivity(new Intent(MainActivity.this, innerCourse.class));
+//            }
+//        });
+
+    }
+
+    private void loadPdfList() {
+        qwe=new ArrayList<>();
         DatabaseReference refernce = FirebaseDatabase.getInstance().getReference().child("Courses");
         refernce.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 qwe.clear();
-                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                    qwe.add(snapshot1.getValue().toString());
+                for (DataSnapshot snapshot1 : snapshot.getChildren())
+                {
+                    System.out.println("snapshot"+snapshot);
+                    ModelClass model=snapshot1.getValue(ModelClass.class);
+                    System.out.println("snapshot1"+snapshot1);
+                    System.out.println("model"+model);
+                    qwe.add(model);
                 }
-                listView.notifyDataSetChanged();
+////                ArrayAdapter<String> listView = new ArrayAdapter<>(MainActivity.this, R.layout.activity_details2, qwe);
+////                list.setAdapter(listView);
+                adapterClass=new AdapterClass(com.example.moodle.MainActivity.this,qwe);
+                System.out.println(adapterClass);
+                binding.label.setAdapter(adapterClass);
+
             }
-
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(MainActivity.this, "New course", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(MainActivity.this, innerCourse.class));
-            }
-        });
-
     }
-        public static void openDrawer(DrawerLayout drawerLayout)
+
+    public static void openDrawer(DrawerLayout drawerLayout)
         {
             drawerLayout.openDrawer(GravityCompat.START);
         }
