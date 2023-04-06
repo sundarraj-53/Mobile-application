@@ -193,6 +193,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/course"
                             android:hint="Phone Number"
+                            android:inputType="number"
                             android:padding="8dp"
                             android:textColor="@color/grey"
                             android:textSize="18sp" />

@@ -7,6 +7,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.location.Address;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -54,8 +55,16 @@ public class editProfile extends AppCompatActivity {
         User = findViewById(R.id.userSettings);
         About = findViewById(R.id.About);
         Logout = findViewById(R.id.Logout);
-        String password = getIntent().getStringExtra("pass");
-
+        String Name=getIntent().getStringExtra("Name");
+        String registerno=getIntent().getStringExtra("Regno");
+        String Addressui=getIntent().getStringExtra("Address");
+        String departmentui=getIntent().getStringExtra("Department");
+        String PhoneNumber=getIntent().getStringExtra("Phoneno");
+        name.setText(Name);
+        regno.setText(registerno);
+        address.setText(Addressui);
+        phoneno.setText(PhoneNumber);
+        department.setText(departmentui);
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,39 +106,37 @@ public class editProfile extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String user = name.getText().toString().trim();
-                String b=regno.getText().toString().trim();
-                String username = getIntent().getStringExtra("name");
-
-                long Regno = Long.parseLong(b);
-                String Address = address.getText().toString();
-                String c=phoneno.getText().toString().trim();
-                long PhoneNo = Long.parseLong(c);
-                String Department = department.getText().toString().trim();
-                HashMap<String, Object> hashmap = new HashMap<>();
-                hashmap.put("Name", "" + user);
-                hashmap.put("Register No", Regno);
-                hashmap.put("Address", "" + Address);
-                hashmap.put("Phone Number", PhoneNo);
-                hashmap.put("Department", Department);
-                FirebaseUser user1=FirebaseAuth.getInstance().getCurrentUser();
-                String id=user1.getUid();
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
-                reference.child(""+id)
-                        .setValue(hashmap)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void unused) {
-                                Toast.makeText(editProfile.this, "User Profile is Updated", Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(editProfile.this, "Failed to add" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
-            }
+                    String user = name.getText().toString().trim();
+                    String b = regno.getText().toString().trim();
+                    long Regno = Long.parseLong(b);
+                    String Address = address.getText().toString();
+                    String c = phoneno.getText().toString().trim();
+                    long PhoneNo = Long.parseLong(c);
+                    String Department = department.getText().toString().trim();
+                    HashMap<String, Object> hashmap = new HashMap<>();
+                    hashmap.put("Name", "" + user);
+                    hashmap.put("Register No", Regno);
+                    hashmap.put("Address", "" + Address);
+                    hashmap.put("Phone Number", PhoneNo);
+                    hashmap.put("Department", Department);
+                    FirebaseUser user1 = FirebaseAuth.getInstance().getCurrentUser();
+                    String id = user1.getUid();
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+                    reference.child("" + id)
+                            .setValue(hashmap)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Toast.makeText(editProfile.this, "User Profile is Updated", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(editProfile.this, "Failed to add" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                }
         });
     }
     public static void openDrawer(DrawerLayout drawerLayout)

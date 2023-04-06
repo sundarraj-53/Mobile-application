@@ -82,9 +82,9 @@ public class user extends AppCompatActivity {
                  System.out.println("Snapshot Value"+snapshot);
                  Toast.makeText(user.this, ""+snapshot, Toast.LENGTH_SHORT).show();
                   Name1=snapshot.child("Name").getValue().toString();
-                 Regno1=snapshot.child("Register No").getValue().toString();
-                Address1=snapshot.child("Address").getValue().toString();
-                 department1=snapshot.child("Department").getValue().toString();
+                  Regno1=snapshot.child("Register No").getValue().toString();
+                  Address1=snapshot.child("Address").getValue().toString();
+                  department1=snapshot.child("Department").getValue().toString();
                  PhoneNo1=snapshot.child("Phone Number").getValue().toString();
                  DbName.setText(Name1);
                  regno.setText(Regno1);
@@ -103,8 +103,11 @@ public class user extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(user.this,editProfile.class);
-                intent.putExtra("name",name);
-                intent.putExtra("pass",pass);
+                intent.putExtra("Name",Name1);
+                intent.putExtra("Regno",Regno1);
+                intent.putExtra("Address",Address1);
+                intent.putExtra("Department",department1);
+                intent.putExtra("Phoneno",PhoneNo1);
                 startActivity(intent);
 
             }
