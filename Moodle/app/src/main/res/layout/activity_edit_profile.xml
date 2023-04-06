@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/drawerLayout"
     android:background="@color/white"
-    tools:context=".MainActivity">
+    tools:context=".editProfile">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,16 +22,18 @@
             android:layout_marginTop="1dp"
             >
             <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_marginTop="30dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/scrollView"
                 >
-                    <LinearLayout
+
+                <LinearLayout
                     android:id="@+id/linearLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="80dp"
                     android:layout_marginEnd="24dp"
                     android:background="@drawable/white_background"
                     android:orientation="vertical"
@@ -45,28 +47,31 @@
                         <RelativeLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="8dp"
+                            android:layout_margin="10dp"
                             android:layout_weight="1"
                             android:elevation="5dp"
                             android:padding="8dp"
                             android:orientation="vertical"
                             >
-                           <TextView
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:id="@+id/name"
-                               android:text="Name"
-                               android:layout_weight="1"
-                               android:textStyle="bold"
-                               android:textColor="@color/lavender"
-                               android:textSize="18sp"
-                               />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:id="@+id/name"
+                                android:text="Name"
+                                android:layout_centerVertical="true"
+                                android:layout_weight="1"
+                                android:textStyle="bold"
+                                android:textColor="@color/lavender"
+                                android:textSize="18sp"
+                                />
+                            <EditText
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
                                 android:textSize="18sp"
-                                android:text="name"
+                                android:background="@drawable/course"
+                                android:hint="Name"
+                                android:padding="8dp"
                                 android:id="@+id/profileName"
                                 android:textColor="@color/grey"
                                 android:layout_weight="1"
@@ -83,27 +88,32 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="8dp"
+                        android:layout_margin="10dp"
                         android:padding="8dp"
                         android:orientation="horizontal"
                         >
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/email"
-                            android:text="Email"
+                            android:id="@+id/reg"
+                            android:text="Reg No"
+                            android:layout_centerVertical="true"
                             android:layout_weight="1"
                             android:textStyle="bold"
                             android:textColor="@color/lavender"
                             android:textSize="18sp"
                             />
-                        <TextView
-                            android:layout_width="wrap_content"
+
+                        <EditText
+                            android:layout_width="200dp"
+                            android:inputType="number"
                             android:layout_height="wrap_content"
-                            android:text="email"
                             android:layout_alignParentEnd="true"
                             android:textSize="18sp"
-                            android:id="@+id/profileEmail"
+                            android:background="@drawable/course"
+                            android:hint="Reg no"
+                            android:padding="8dp"
+                            android:id="@+id/regEt"
                             android:textColor="@color/grey"
                             android:layout_weight="1"
                             />
@@ -111,49 +121,14 @@
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_margin="8dp"
+                        android:layout_margin="10dp"
                         android:alpha="0.5"
                         android:background="@color/lavender"
                         />
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="8dp"
-                        android:padding="8dp"
-                        android:orientation="horizontal"
-                        >
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/regNo"
-                            android:text="Register No"
-                            android:layout_weight="1"
-                            android:textStyle="bold"
-                            android:textColor="@color/lavender"
-                            android:textSize="18sp"
-                            />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="register No"
-                            android:layout_alignParentEnd="true"
-                            android:textSize="18sp"
-                            android:id="@+id/regNoTv"
-                            android:textColor="@color/grey"
-                            android:layout_weight="1"
-                            />
-                    </RelativeLayout>
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_margin="8dp"
-                        android:alpha="0.5"
-                        android:background="@color/lavender"
-                        />
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="8dp"
+                        android:layout_margin="10dp"
                         android:padding="8dp"
                         android:orientation="horizontal"
                         >
@@ -161,19 +136,22 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/password"
-                            android:text="Password"
+                            android:text="Address"
                             android:layout_weight="1"
+                            android:layout_centerVertical="true"
                             android:textStyle="bold"
                             android:textColor="@color/lavender"
                             android:textSize="18sp"
                             />
-                        <TextView
-                            android:layout_width="wrap_content"
+                        <EditText
+                            android:layout_width="200dp"
                             android:layout_height="wrap_content"
-                            android:text="Password"
                             android:layout_alignParentEnd="true"
                             android:textSize="18sp"
-                            android:id="@+id/passEdt"
+                            android:background="@drawable/course"
+                            android:hint="Address"
+                            android:padding="8dp"
+                            android:id="@+id/addr"
                             android:textColor="@color/grey"
                             android:layout_weight="1"
                             />
@@ -181,50 +159,55 @@
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_margin="8dp"
+                        android:layout_margin="10dp"
                         android:alpha="0.5"
                         android:background="@color/lavender"
                         />
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="8dp"
+                        android:layout_margin="10dp"
                         android:padding="8dp"
                         android:orientation="horizontal"
                         >
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/Address"
-                            android:text="Address"
+                            android:id="@+id/phoneNo"
+                            android:text="Phone Number"
+                            android:layout_centerVertical="true"
                             android:layout_weight="1"
                             android:textStyle="bold"
                             android:textColor="@color/lavender"
                             android:textSize="18sp"
                             />
-                        <TextView
-                            android:layout_width="150dp"
+                        <EditText
+                            android:id="@+id/phoneNoEt"
+                            android:layout_width="155dp"
                             android:layout_height="wrap_content"
-                            android:text="Address"
-                            android:gravity="right"
                             android:layout_alignParentEnd="true"
-                            android:textSize="14sp"
-                            android:id="@+id/AddTv"
-                            android:textColor="@color/grey"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginBottom="5dp"
                             android:layout_weight="1"
-                            />
+                            android:background="@drawable/course"
+                            android:hint="Phone Number"
+                            android:padding="8dp"
+                            android:textColor="@color/grey"
+                            android:textSize="18sp" />
                     </RelativeLayout>
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_margin="8dp"
+                        android:layout_margin="10dp"
                         android:alpha="0.5"
                         android:background="@color/lavender"
                         />
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="8dp"
+                        android:layout_margin="10dp"
                         android:padding="8dp"
                         android:orientation="horizontal"
                         >
@@ -233,117 +216,48 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/department"
                             android:text="Department"
+                            android:layout_centerVertical="true"
                             android:layout_weight="1"
                             android:textStyle="bold"
                             android:textColor="@color/lavender"
                             android:textSize="18sp"
                             />
-                        <TextView
-                            android:layout_width="wrap_content"
+                        <EditText
+                            android:id="@+id/DepartmentEt"
+                            android:layout_width="155dp"
                             android:layout_height="wrap_content"
-                            android:text="Department"
                             android:layout_alignParentEnd="true"
-                            android:textSize="18sp"
-                            android:id="@+id/departmentTv"
-                            android:textColor="@color/grey"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginBottom="5dp"
                             android:layout_weight="1"
+                            android:background="@drawable/course"
+                            android:hint="Department"
+                            android:padding="8dp"
+                            android:textColor="@color/grey"
+                            android:textSize="18sp"
                             />
+
                     </RelativeLayout>
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_margin="8dp"
-                        android:alpha="0.5"
-                        android:background="@color/lavender"
-                        />
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="8dp"
+                        android:layout_margin="10dp"
                         android:padding="8dp"
                         android:orientation="horizontal"
                         >
-                        <TextView
+                        <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/phno"
-                            android:text="Phone No"
-                            android:layout_weight="1"
-                            android:textStyle="bold"
-                            android:textColor="@color/lavender"
-                            android:textSize="18sp"
+                            android:textAlignment="center"
+                            android:text="Submit"
+                            android:layout_centerHorizontal="true"
+                            android:id="@+id/editProfile"
+                            android:backgroundTint="@color/lavender"
+                            android:layout_marginTop="5dp"
+                            android:padding="5dp"
                             />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Phone No"
-                            android:layout_alignParentEnd="true"
-                            android:textSize="18sp"
-                            android:id="@+id/phnoTv"
-                            android:textColor="@color/grey"
-                            android:layout_weight="1"
-                            />
-                    </RelativeLayout>
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_margin="8dp"
-                        android:alpha="0.5"
-                        android:background="@color/lavender"
-                        />
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="8dp"
-                        android:padding="8dp"
-                        android:orientation="horizontal"
-                        >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/accountStatus"
-                        android:text="Account Status"
-                        android:layout_weight="1"
-                        android:textStyle="bold"
-                        android:textColor="@color/lavender"
-                        android:textSize="18sp"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Not Verified"
-                        android:layout_alignParentEnd="true"
-                        android:textSize="18sp"
-                        android:id="@+id/accountStatusTv"
-                        android:textColor="@color/grey"
-                        android:layout_weight="1"
-                        />
-                    </RelativeLayout>
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_margin="8dp"
-                        android:alpha="0.5"
-                        android:background="@color/lavender"
-                        />
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp"
-                        android:padding="8dp"
-                        android:orientation="horizontal"
-                        >
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:text="Edit"
-                        android:layout_centerHorizontal="true"
-                        android:id="@+id/editProfile"
-                        android:backgroundTint="@color/lavender"
-                        android:layout_marginTop="5dp"
-                        android:padding="5dp"
-                        />
                     </RelativeLayout>
                 </LinearLayout>
             </ScrollView>

@@ -12,6 +12,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -23,7 +24,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class user extends AppCompatActivity {
 
@@ -35,13 +40,17 @@ public class user extends AppCompatActivity {
     FirebaseUser firebaseEmail;
     FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
+    Button edit;
+    TextView DbName,regno,address,Department,phoneno;
     LinearLayout home,Dashboard,User,About,Logout;
+    String Name1,Regno1,Address1,department1,PhoneNo1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding=ActivityUserBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        edit=findViewById(R.id.editProfile);
         drawerLayout = findViewById(R.id.drawerLayout);
         menu = findViewById(R.id.menu);
         home = findViewById(R.id.home);
@@ -49,16 +58,57 @@ public class user extends AppCompatActivity {
         User = findViewById(R.id.userSettings);
         About = findViewById(R.id.About);
         Logout = findViewById(R.id.Logout);
-        getName=findViewById(R.id.titleUsername);
+//        getName=findViewById(R.id.titleUsername);
         getPass=findViewById(R.id.passEdt);
         profileEmail=findViewById(R.id.profileEmail);
+        DbName=findViewById(R.id.profileName);
+        regno=findViewById(R.id.regNoTv);
+        address=findViewById(R.id.AddTv);
+        Department=findViewById(R.id.departmentTv);
+        phoneno=findViewById(R.id.phnoTv);
         String name = getIntent().getStringExtra("name");
         String pass=getIntent().getStringExtra("pass");
         System.out.println("UserActivity"+name);
         System.out.println("UserActivityPass"+pass);
-        getName.setText(name);
+//        getName.setText(name);
         getPass.setText(pass);
         profileEmail.setText(name);
+        FirebaseUser user1=FirebaseAuth.getInstance().getCurrentUser();
+//        String id=user1.getUid();
+        DatabaseReference reference= FirebaseDatabase.getInstance().getReference("Users").child(user1.getUid());
+         reference.addValueEventListener(new ValueEventListener() {
+             @Override
+             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                 System.out.println("Snapshot Value"+snapshot);
+                 Toast.makeText(user.this, ""+snapshot, Toast.LENGTH_SHORT).show();
+                  Name1=snapshot.child("Name").getValue().toString();
+                 Regno1=snapshot.child("Register No").getValue().toString();
+                Address1=snapshot.child("Address").getValue().toString();
+                 department1=snapshot.child("Department").getValue().toString();
+                 PhoneNo1=snapshot.child("Phone Number").getValue().toString();
+                 DbName.setText(Name1);
+                 regno.setText(Regno1);
+                 address.setText(Address1);
+                 Department.setText(department1);
+                 phoneno.setText(PhoneNo1);
+
+             }
+
+             @Override
+             public void onCancelled(@NonNull DatabaseError error) {
+
+             }
+         });
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(user.this,editProfile.class);
+                intent.putExtra("name",name);
+                intent.putExtra("pass",pass);
+                startActivity(intent);
+
+            }
+        });
 
         binding.accountStatusTv.setText("N/A");
         firebaseAuth=FirebaseAuth.getInstance();
