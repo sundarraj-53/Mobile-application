@@ -71,18 +71,22 @@ public class admin extends AppCompatActivity {
         About = findViewById(R.id.About);
         attach=findViewById(R.id.pin);
         AddNewCategory=findViewById(R.id.NewCategory);
-        FirebaseMessaging.getInstance().subscribeToTopic("Moodle")
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
                     @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        String msg = "The Course is Uploaded";
+                    public void onComplete(@NonNull Task<String> task) {
                         if (!task.isSuccessful()) {
-                            msg = "Failed";
+                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+                            return;
                         }
+
+                        // Get new FCM registration token
+                        String token = task.getResult();
+                        Toast.makeText(admin.this, ""+token, Toast.LENGTH_SHORT).show();
+                        System.out.println("Token "+token);
+                        // Log and toast
                     }
                 });
-
-
         attach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -213,6 +217,12 @@ public class admin extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
+                        MoodleSend.pushNotification(
+                                admin.this,
+                                "csdxWMyUQiiilWVXPNufQJ:APA91bGMHyQO4coicf3bQ658z3AjJpgZ7pgEz8neCIhiQgcByVk0rBRzJDqhiENqtmggaJHs3WuN0q9IB4w5CxbNMXD4wo-IeC3-MR0Y4UnWPUjqZixOpVtl3rN45gJfRJ1p13zVxX5C",
+                                "Moodle",
+                                "Course is Updated"
+                        );
                         Toast.makeText(admin.this, "Successfully pdf is uploaded", Toast.LENGTH_SHORT).show();
 
                     }
