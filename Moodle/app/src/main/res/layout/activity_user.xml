@@ -66,7 +66,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
                                 android:textSize="18sp"
-                                android:text="name"
+                                android:text=""
                                 android:id="@+id/profileName"
                                 android:textColor="@color/grey"
                                 android:layout_weight="1"
@@ -135,7 +135,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="register No"
+                            android:text=" "
                             android:layout_alignParentEnd="true"
                             android:textSize="18sp"
                             android:id="@+id/regNoTv"
@@ -205,7 +205,7 @@
                         <TextView
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
-                            android:text="Address"
+                            android:text=""
                             android:gravity="right"
                             android:layout_alignParentEnd="true"
                             android:textSize="14sp"
@@ -241,7 +241,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Department"
+                            android:text=""
                             android:layout_alignParentEnd="true"
                             android:textSize="18sp"
                             android:id="@+id/departmentTv"
@@ -276,7 +276,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Phone No"
+                            android:text=""
                             android:layout_alignParentEnd="true"
                             android:textSize="18sp"
                             android:id="@+id/phnoTv"

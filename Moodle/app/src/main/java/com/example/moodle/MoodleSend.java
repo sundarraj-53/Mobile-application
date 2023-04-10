@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MoodleSend {
-        private static String BASE_URL="https://fcm.googleapis.com/fcm/send";
+        private static final String BASE_URL="https://fcm.googleapis.com/fcm/send";
     private static String SERVER_KEY="AAAASEW5G04:APA91bEkspqLLM3wn0B76hSnmOncbpQRfwiIN52DUgtk879Fnp8wCTrho-dkgmAeP40fBWHnHlzf5oNTcT9JIxMF9qkq-uH2t6T0lqiwBCkJekNUCxDGJGVenhmTPQO9YDrLStCtMzlO";
 
     public static void pushNotification(Context context,String token,String title,String message){
