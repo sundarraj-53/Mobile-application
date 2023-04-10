@@ -23,8 +23,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -169,6 +172,30 @@ public class addbook extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
+                        DatabaseReference databaseReference1=FirebaseDatabase.getInstance().getReference("Tokens");
+                        databaseReference1.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                System.out.println("Datasnapshot"+snapshot);
+                                for(DataSnapshot ds:snapshot.getChildren()){
+                                    System.out.println("DS"+ds);
+                                    String token=ds.child("Token").getValue().toString();
+                                    System.out.println("TOken"+token);
+                                    MoodleSend.pushNotification(
+                                            addbook.this,
+                                            token,
+                                            "Moodle",
+                                            "New Book is Updated"
+                                    );
+
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
                         Toast.makeText(addbook.this, "Successfully pdf is uploaded", Toast.LENGTH_SHORT).show();
 
                     }

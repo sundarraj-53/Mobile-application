@@ -31,7 +31,6 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding=ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         auth=FirebaseAuth.getInstance();
         t1=findViewById(R.id.Email);
         t2=findViewById(R.id.password);
@@ -57,6 +56,7 @@ public class Login extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(AuthResult authResult) {
                                          if(user.equals("admin@nec.edu.in") && password.equals("Admin@123")){
+
                                              Toast.makeText(Login.this, "Admin User", Toast.LENGTH_SHORT).show();
                                              startActivity(new Intent(Login.this,admin.class));
                                          }

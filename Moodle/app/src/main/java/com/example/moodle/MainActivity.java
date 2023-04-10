@@ -156,7 +156,6 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent=new Intent(MainActivity.this,user.class);
                 intent.putExtra("name", getName);
                 intent.putExtra("pass", getPass);
-
                 startActivity(intent);
 
 //                redirectActivity(MainActivity.this,user.class);

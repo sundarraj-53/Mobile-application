@@ -217,12 +217,30 @@ public class admin extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        MoodleSend.pushNotification(
-                                admin.this,
-                                "csdxWMyUQiiilWVXPNufQJ:APA91bGMHyQO4coicf3bQ658z3AjJpgZ7pgEz8neCIhiQgcByVk0rBRzJDqhiENqtmggaJHs3WuN0q9IB4w5CxbNMXD4wo-IeC3-MR0Y4UnWPUjqZixOpVtl3rN45gJfRJ1p13zVxX5C",
-                                "Moodle",
-                                "Course is Updated"
-                        );
+                        DatabaseReference databaseReference1=FirebaseDatabase.getInstance().getReference("Tokens");
+                        databaseReference1.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                System.out.println("Datasnapshot"+snapshot);
+                                for(DataSnapshot ds:snapshot.getChildren()){
+                                    System.out.println("DS"+ds);
+                                    String token=ds.child("Token").getValue().toString();
+                                    System.out.println("TOken"+token);
+                                    MoodleSend.pushNotification(
+                                            admin.this,
+                                            token,
+                                            "Moodle",
+                                            "Course & Syllabus is Updated"
+                                    );
+
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
                         Toast.makeText(admin.this, "Successfully pdf is uploaded", Toast.LENGTH_SHORT).show();
 
                     }

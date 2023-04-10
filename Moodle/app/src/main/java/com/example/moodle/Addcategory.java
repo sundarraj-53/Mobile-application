@@ -18,8 +18,11 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
@@ -119,7 +122,31 @@ public class Addcategory extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(Addcategory.this, "Category added Successfully", Toast.LENGTH_SHORT).show();
+                        DatabaseReference databaseReference1=FirebaseDatabase.getInstance().getReference("Tokens");
+                        databaseReference1.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                System.out.println("Datasnapshot"+snapshot);
+                                for(DataSnapshot ds:snapshot.getChildren()){
+                                    System.out.println("DS"+ds);
+                                    String token=ds.child("Token").getValue().toString();
+                                    System.out.println("TOken"+token);
+                                    MoodleSend.pushNotification(
+                                            Addcategory.this,
+                                            token,
+                                            "Moodle",
+                                            "Category is Updated"
+                                    );
+
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+                        Toast.makeText(Addcategory.this, "Successfully pdf is uploaded", Toast.LENGTH_SHORT).show();
 
                     }
                 })
